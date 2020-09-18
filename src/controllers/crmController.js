@@ -20,17 +20,31 @@ export const getContacts = (req, res) => {
     if (err) {
       res.send(err);
     }
-    res.json(contact);
+    res.header("Access-Control-Allow-Origin", "*");
+    // setTimeout(() => {
+    res.send(contact);
+    // }, 5000);
   });
 };
 
-export const getContactWithID = (req, res) => {
+export const getContactWithID = (redis) => (req, res) => {
   console.log(req.params);
   Contact.findById(req.params.contactID, (err, contact) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     if (err) {
       res.send(err);
+    } else {
+      setTimeout(() => {
+        redis.hmset(
+          contact._id,
+          "firstName",
+          contact.firstName,
+          "lastName",
+          contact.lastName
+        );
+        res.send(contact);
+      }, 3000);
     }
-    res.json(contact);
   });
 };
 
