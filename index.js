@@ -9,7 +9,11 @@ const PORT = 4000;
 
 // Mongoose Connection
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/CRMdb", {
+/**
+ * use "mongodb://{MongoDB name at Docker-compose}/{DB Name}" if run via Docker
+ * use "mongodb://loclahost/{DB Name}" if run locally
+ */
+mongoose.connect("mongodb://mongo/CRMdb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

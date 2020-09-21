@@ -13,10 +13,23 @@ import {
 } from "../controllers/countryController.js";
 
 const redis = new Redis({
-  password: "p@ssw0rd",
+  // password: "p@ssw0rd",
+  // Add host: "redis" if run via docker
+  host: "redis",
 });
 
 const routes = (app) => {
+  app.route("/testrediscon").get((req, res) => {
+    redis.set("puff", "the mighty dragon");
+    console.log("puff");
+    let resultRedis = "None";
+    redis.get("puff", (err, result) => {
+      console.log(result);
+      resultRedis = `The result is: Puff, ${result}`;
+      res.send(resultRedis);
+    });
+  });
+
   app
     .route("/contact")
     .get((req, res, next) => {
