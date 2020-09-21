@@ -21,11 +21,13 @@
 	// "postCreateCommand": "yarn install",
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"
-	// "forwardPorts": [
-	// 	4000
-	// ],
+	"forwardPorts": [
+		4000,
+		6379
+	],
 	"appPort": [
-		"4001: 4000"
+		"4001: 4000",
+		6379
 	],
 	"postCreateCommand": "yarn"
 }
