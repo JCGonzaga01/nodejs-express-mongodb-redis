@@ -11,9 +11,9 @@ const PORT = 4000;
 mongoose.Promise = global.Promise;
 /**
  * use "mongodb://{MongoDB name at Docker-compose}/{DB Name}" if run via Docker
- * use "mongodb://loclahost/{DB Name}" if run locally
+ * use "mongodb://localhost/{DB Name}" if run locally
  */
-mongoose.connect("mongodb://mongo/CRMdb", {
+mongoose.connect("mongodb://localhost/CRMdb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -25,6 +25,10 @@ app.use(bodyPayser.json());
 routes(app);
 
 // Serving static files
+// "static" is the folder name
+// This is useful if we want to serve static files such as images from the back-end server
+// to call the static file: just append the static file name after the root url
+// e.g. localhost:4000/sky.jpeg
 app.use(express.static("static"));
 
 app.use(cors());

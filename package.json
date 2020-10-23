@@ -7,7 +7,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nodemon ./index.js -exec babel-node -e js"
+    "startOld": "nodemon ./index.js -exec babel-node -e js",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/index.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -16,7 +18,8 @@
     "ioredis": "^4.17.3",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.5",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

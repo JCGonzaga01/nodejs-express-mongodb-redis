@@ -14,8 +14,8 @@ import {
 
 const redis = new Redis({
   // password: "p@ssw0rd",
-  // Add host: "redis" if run via docker
-  host: "redis",
+  // Add host: "redis" if run via docker, remove/comment if run locally
+  // host: "redis",
 });
 
 const routes = (app) => {
